@@ -49,29 +49,26 @@
 
 - (void)search {
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/explore?near=new_york,_NY&venuePhotos=1&oauth_token=%@%@", self.oAuthToken, FOURSQUARE_VERSION];
-    NSLog(@"%@", urlString);
+    //NSLog(@"%@", urlString);
     NSURL *foursquareExploreSearch = [NSURL URLWithString:urlString];
     
     [APIManager GETRequestWithURL:foursquareExploreSearch completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        //NSLog(@"%@", json);
         
         NSArray *results = [[json objectForKey:@"response"] objectForKey:@"groups"];
         NSArray *items = [results[0] objectForKey:@"items"];
-        //NSLog(@"%@", items);
         
         for (NSDictionary *item in items) {
             Venue *venue = [[Venue alloc] initWithJSON:item];
             [self.searchResults addObject:venue];
-            //NSLog(@"%@", venue.venueName);
         }
-        //NSLog(@"%@", self.searchResults);
         
         [self.tableView reloadData];
         
     }];
 }
 
+#pragma mark - UIButton action
 - (IBAction)connect:(id)sender {
     AuthenticationViewController *controller = [[AuthenticationViewController alloc] init];
     [self presentViewController:controller animated:YES completion:nil];
@@ -104,7 +101,15 @@
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     
-    controller.venueImageURL = [self.searchResults[indexPath.row] imageLargeURL];
+    Venue *venue = self.searchResults[indexPath.row];
+    
+    controller.venueImageURL = venue.imageLargeURL;
+    controller.venueName = venue.venueName;
+    controller.tipText = venue.tipText;
+    controller.hereNow = venue.hereNow;
+    controller.rating = venue.rating;
+    controller.checkinsCount = venue.checkinsCount;
+    controller.address = venue.address;
 }
 
 @end

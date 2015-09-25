@@ -17,3 +17,5 @@
 #define FOURSQUARE_VERSION @"&v=20150915&m=foursquare"
 
 #define ACCESS_TOKEN_KEY @"access_token"
+
+#define GIPHY_STICKER_KEY @"&api_key=dc6zaTOxFJmzC"

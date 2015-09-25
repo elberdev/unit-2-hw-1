@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController
+
 @property (nonatomic) NSURL *venueImageURL;
 @property (weak, nonatomic) IBOutlet UIImageView *venueImageLarge;
+@property (nonatomic) NSString *venueName;
+@property (nonatomic) NSString *tipText;
+@property (nonatomic) NSInteger hereNow;
+@property (nonatomic) CGFloat rating;
+@property (nonatomic) NSInteger checkinsCount;
+@property (nonatomic) NSArray *address;
+
 @end

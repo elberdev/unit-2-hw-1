@@ -15,7 +15,7 @@
 @property (nonatomic) NSURL *imageLargeURL;
 @property (nonatomic) NSString *tipText;
 @property (nonatomic) NSInteger hereNow;
-@property (nonatomic) NSString *rating;
+@property (nonatomic) CGFloat rating;
 @property (nonatomic) NSInteger checkinsCount;
 @property (nonatomic) NSArray *address;
 - (instancetype)initWithJSON:(NSDictionary *)jsonPost;

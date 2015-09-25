@@ -34,27 +34,27 @@
             
             self.imageLargeURL = [NSURL URLWithString:urlLargeString];
 
-            NSLog(@"%@", urlSmallString);
+            //NSLog(@"%@", urlSmallString);
             
         } else {
             self.imageSmall = [UIImage imageNamed:@"smallImage"];
-            NSLog(@"No Photo");
+            //NSLog(@"No Photo");
         }
         
         self.tipText = jsonPost[@"tips"][0][@"text"];
-        NSLog(@"%@", self.tipText);
+        //NSLog(@"%@", self.tipText);
         
         self.hereNow = [jsonPost[@"venue"][@"hereNow"][@"count"] integerValue];
-        NSLog(@"%ld", self.hereNow);
+        //NSLog(@"%ld", self.hereNow);
         
-        self.rating = jsonPost[@"venue"][@"rating"];
-        NSLog(@"%@", self.rating);
+        self.rating = [jsonPost[@"venue"][@"rating"] floatValue];
+        //NSLog(@"%f", self.rating);
         
         self.checkinsCount = [jsonPost[@"venue"][@"stats"][@"checkinsCount"] integerValue];
-        NSLog(@"%ld", self.checkinsCount);
+        //NSLog(@"%ld", self.checkinsCount);
         
         self.address = jsonPost[@"venue"][@"location"][@"formattedAddress"];
-        NSLog(@"%@", self.address);
+        //NSLog(@"%@", self.address);
         
         return self;
     }

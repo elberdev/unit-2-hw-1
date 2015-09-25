@@ -12,6 +12,8 @@
 		3B5A11381BB5968D00AB703A /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5A11371BB5968D00AB703A /* APIManager.m */; settings = {ASSET_TAGS = (); }; };
 		3B5A113B1BB59BA000AB703A /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5A113A1BB59BA000AB703A /* Venue.m */; settings = {ASSET_TAGS = (); }; };
 		3BB320F51BB5CE5E001B2042 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB320F41BB5CE5E001B2042 /* DetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3BB320FA1BB5EB98001B2042 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB320F71BB5EB98001B2042 /* FLAnimatedImage.m */; settings = {ASSET_TAGS = (); }; };
+		3BB320FB1BB5EB98001B2042 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB320F91BB5EB98001B2042 /* FLAnimatedImageView.m */; settings = {ASSET_TAGS = (); }; };
 		8D7DCD4B1BAF859400A92AD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DCD4A1BAF859400A92AD2 /* main.m */; };
 		8D7DCD4E1BAF859400A92AD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DCD4D1BAF859400A92AD2 /* AppDelegate.m */; };
 		8D7DCD511BAF859400A92AD2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DCD501BAF859400A92AD2 /* ViewController.m */; };
@@ -32,6 +34,10 @@
 		3B5A113A1BB59BA000AB703A /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		3BB320F31BB5CE5E001B2042 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		3BB320F41BB5CE5E001B2042 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		3BB320F61BB5EB98001B2042 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		3BB320F71BB5EB98001B2042 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		3BB320F81BB5EB98001B2042 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		3BB320F91BB5EB98001B2042 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		8D7DCD461BAF859400A92AD2 /* TalkinToTheNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkinToTheNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7DCD4A1BAF859400A92AD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D7DCD4C1BAF859400A92AD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,6 +74,27 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		3BB320FC1BB5EBA3001B2042 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				3BB320F61BB5EB98001B2042 /* FLAnimatedImage.h */,
+				3BB320F71BB5EB98001B2042 /* FLAnimatedImage.m */,
+				3BB320F81BB5EB98001B2042 /* FLAnimatedImageView.h */,
+				3BB320F91BB5EB98001B2042 /* FLAnimatedImageView.m */,
+			);
+			name = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		3BB320FD1BB5EBD4001B2042 /* APICommunication */ = {
+			isa = PBXGroup;
+			children = (
+				3B5A11311BB5807C00AB703A /* Config.h */,
+				3B5A11361BB5968D00AB703A /* APIManager.h */,
+				3B5A11371BB5968D00AB703A /* APIManager.m */,
+			);
+			name = APICommunication;
+			sourceTree = "<group>";
+		};
 		8D7DCD3D1BAF859400A92AD2 = {
 			isa = PBXGroup;
 			children = (
@@ -87,15 +114,14 @@
 		8D7DCD481BAF859400A92AD2 /* TalkinToTheNet */ = {
 			isa = PBXGroup;
 			children = (
-				3B5A11311BB5807C00AB703A /* Config.h */,
 				8D7DCD4C1BAF859400A92AD2 /* AppDelegate.h */,
 				8D7DCD4D1BAF859400A92AD2 /* AppDelegate.m */,
-				3B5A11361BB5968D00AB703A /* APIManager.h */,
-				3B5A11371BB5968D00AB703A /* APIManager.m */,
 				3B5A11391BB59BA000AB703A /* Venue.h */,
 				3B5A113A1BB59BA000AB703A /* Venue.m */,
 				3B5A112E1BB57CB600AB703A /* SearchResultsTableViewCell.h */,
 				3B5A112F1BB57CB600AB703A /* SearchResultsTableViewCell.m */,
+				3BB320FD1BB5EBD4001B2042 /* APICommunication */,
+				3BB320FC1BB5EBA3001B2042 /* FLAnimatedImage */,
 				3B5A11351BB58D8400AB703A /* Controllers */,
 				8D7DCD521BAF859400A92AD2 /* Main.storyboard */,
 				8D7DCD551BAF859400A92AD2 /* Assets.xcassets */,
@@ -191,7 +217,9 @@
 				3B5A11381BB5968D00AB703A /* APIManager.m in Sources */,
 				8D7DCD4E1BAF859400A92AD2 /* AppDelegate.m in Sources */,
 				3B5A11301BB57CB600AB703A /* SearchResultsTableViewCell.m in Sources */,
+				3BB320FB1BB5EB98001B2042 /* FLAnimatedImageView.m in Sources */,
 				8D7DCD4B1BAF859400A92AD2 /* main.m in Sources */,
+				3BB320FA1BB5EB98001B2042 /* FLAnimatedImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
