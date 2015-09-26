@@ -76,8 +76,10 @@
             [[string lowercaseString] isEqualToString:@"at"] ||
             [[string lowercaseString] isEqualToString:@"the"] ||
             [[string lowercaseString] isEqualToString:@"and"] ||
+            [[string lowercaseString] isEqualToString:@"by"] ||
             [[string lowercaseString] isEqualToString:@"in"] ||
             [[string lowercaseString] isEqualToString:@"on"] ||
+            [[string lowercaseString] isEqualToString:@"or"] ||
             [[string lowercaseString] isEqualToString:@"be"] ||
             [[string lowercaseString] isEqualToString:@"of"] ||
             [[string lowercaseString] isEqualToString:@"is"] ||
@@ -85,6 +87,7 @@
             [[string lowercaseString] isEqualToString:@"for"] ||
             [[string lowercaseString] isEqualToString:@"to"] ||
             [[string lowercaseString] isEqualToString:@"gracie"] ||
+            [[string lowercaseString] isEqualToString:@"ludicrous"] ||
             [[string lowercaseString] isEqualToString:@"foodies"]) {
             
             stringToCopy = @"new+york";

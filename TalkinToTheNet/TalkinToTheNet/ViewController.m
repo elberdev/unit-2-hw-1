@@ -56,6 +56,7 @@
         [self.tableView setHidden:NO];
         self.oAuthToken = [self.defaults objectForKey:ACCESS_TOKEN_KEY];
         [self.searchBar setUserInteractionEnabled:YES];
+        self.searchBar.placeholder = @"Search by location!";
     }
     
     NSLog(@"From ViewController - access token: %@", [self.defaults objectForKey:ACCESS_TOKEN_KEY]);
@@ -66,6 +67,14 @@
     self.query = searchBar.text;
     [self search];
     NSLog(@"search button clicked");
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.placeholder = @"Search by location!";
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.placeholder = @"";
 }
 
 #pragma mark - Search query method
@@ -88,6 +97,11 @@
         for (NSDictionary *item in items) {
             Venue *venue = [[Venue alloc] initWithJSON:item];
             [self.searchResults addObject:venue];
+        }
+        
+        if (self.searchResults.count == 0) {
+            NSLog(@"No search results for: %@", safeQuery);
+            self.searchBar.text = @"NO SEARCH RESULTS! Try again.";
         }
         
         [self.tableView reloadData];
