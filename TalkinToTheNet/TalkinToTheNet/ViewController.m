@@ -61,18 +61,14 @@
     NSLog(@"From ViewController - access token: %@", [self.defaults objectForKey:ACCESS_TOKEN_KEY]);
 }
 
+#pragma mark - UISearchBarDelegate method
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.query = searchBar.text;
     [self search];
     NSLog(@"search button clicked");
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    self.query = searchBar.text;
-    [self search];
-    NSLog(@"text did end editing");
-}
-
+#pragma mark - Search query method
 - (void)search {
     
     NSString *safeQuery = [self.query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -104,7 +100,6 @@
     AuthenticationViewController *controller = [[AuthenticationViewController alloc] init];
     [self presentViewController:controller animated:YES completion:nil];
     [self.connectToFoursquare setHidden:YES];
-//    [self.tableView setHidden:NO];
 }
 
 #pragma mark - UITableViewDataSource methods
