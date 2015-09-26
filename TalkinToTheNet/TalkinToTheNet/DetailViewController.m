@@ -58,8 +58,9 @@
     for (NSString *string in searchWordsAdditional) {
         NSString *cleanString = [string stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         NSString *cleanerString = [cleanString stringByReplacingOccurrencesOfString:@"," withString:@""];
-        NSString *evenCleanerString = [cleanerString stringByReplacingOccurrencesOfString:@"'" withString:@""];
-        [searchWordsAdditionalClean addObject:evenCleanerString];
+        NSString *evenCleanerString = [cleanerString stringByReplacingOccurrencesOfString:@"\'"withString:@""];
+        NSString *ridiculouslyClean = [evenCleanerString stringByReplacingOccurrencesOfString:@"." withString:@""];
+        [searchWordsAdditionalClean addObject:ridiculouslyClean];
     }
     
     NSArray *searchTermsComplete = [separateSearchWords arrayByAddingObjectsFromArray:searchWordsAdditionalClean];
@@ -72,21 +73,28 @@
         
         if ([[string lowercaseString] isEqualToString:@"a"] ||
             [[string lowercaseString] isEqualToString:@"an"] ||
+            [[string lowercaseString] isEqualToString:@"at"] ||
             [[string lowercaseString] isEqualToString:@"the"] ||
             [[string lowercaseString] isEqualToString:@"and"] ||
             [[string lowercaseString] isEqualToString:@"in"] ||
+            [[string lowercaseString] isEqualToString:@"on"] ||
             [[string lowercaseString] isEqualToString:@"be"] ||
             [[string lowercaseString] isEqualToString:@"of"] ||
+            [[string lowercaseString] isEqualToString:@"is"] ||
+            [[string lowercaseString] isEqualToString:@"it"] ||
             [[string lowercaseString] isEqualToString:@"for"] ||
-            [[string lowercaseString] isEqualToString:@"to"]) {
+            [[string lowercaseString] isEqualToString:@"to"] ||
+            [[string lowercaseString] isEqualToString:@"gracie"] ||
+            [[string lowercaseString] isEqualToString:@"foodies"]) {
             
             stringToCopy = @"new+york";
             
         } else {
+            
             stringToCopy = string;
         }
+        
         [prunedArray addObject:stringToCopy];
-
     }
     
     NSInteger randomSearchIndex = arc4random_uniform((uint32_t)prunedArray.count);

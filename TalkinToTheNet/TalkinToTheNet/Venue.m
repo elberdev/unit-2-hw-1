@@ -16,6 +16,11 @@
     if (self = [super init]) {
 
         self.venueName = jsonPost[@"venue"][@"name"];
+        self.tipText = jsonPost[@"tips"][0][@"text"];
+        self.hereNow = [jsonPost[@"venue"][@"hereNow"][@"count"] integerValue];
+        self.rating = [jsonPost[@"venue"][@"rating"] floatValue];
+        self.checkinsCount = [jsonPost[@"venue"][@"stats"][@"checkinsCount"] integerValue];
+        self.address = jsonPost[@"venue"][@"location"][@"formattedAddress"];
         
         NSArray *photos = jsonPost[@"venue"][@"photos"][@"groups"];
         if ([photos count] > 0) {
@@ -33,28 +38,10 @@
             self.imageSmall = [UIImage imageWithData:smallData];
             
             self.imageLargeURL = [NSURL URLWithString:urlLargeString];
-
-            //NSLog(@"%@", urlSmallString);
             
         } else {
             self.imageSmall = [UIImage imageNamed:@"smallImage"];
-            //NSLog(@"No Photo");
         }
-        
-        self.tipText = jsonPost[@"tips"][0][@"text"];
-        //NSLog(@"%@", self.tipText);
-        
-        self.hereNow = [jsonPost[@"venue"][@"hereNow"][@"count"] integerValue];
-        //NSLog(@"%ld", self.hereNow);
-        
-        self.rating = [jsonPost[@"venue"][@"rating"] floatValue];
-        //NSLog(@"%f", self.rating);
-        
-        self.checkinsCount = [jsonPost[@"venue"][@"stats"][@"checkinsCount"] integerValue];
-        //NSLog(@"%ld", self.checkinsCount);
-        
-        self.address = jsonPost[@"venue"][@"location"][@"formattedAddress"];
-        //NSLog(@"%@", self.address);
         
         return self;
     }
