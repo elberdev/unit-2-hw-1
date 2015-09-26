@@ -44,62 +44,90 @@
     self.addressLabel.text = self.address[0];
     
     [self fetchSticker];
+}
+
+- (NSString *)chooseSearchTerm {
     
+    // COMPILE SEARCH TERMS AND PICK A RANDOM ONE
+    NSString *searchTerm = [[self.venueName lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSArray *separateSearchWords = [searchTerm componentsSeparatedByString:@"+"];
+    NSArray *searchWordsAdditional = [self.tipText componentsSeparatedByString:@" "];
+    
+    NSMutableArray *searchWordsAdditionalClean = [[NSMutableArray alloc] init];
+    
+    for (NSString *string in searchWordsAdditional) {
+        NSString *cleanString = [string stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *cleanerString = [cleanString stringByReplacingOccurrencesOfString:@"," withString:@""];
+        NSString *evenCleanerString = [cleanerString stringByReplacingOccurrencesOfString:@"'" withString:@""];
+        [searchWordsAdditionalClean addObject:evenCleanerString];
+    }
+    
+    NSArray *searchTermsComplete = [separateSearchWords arrayByAddingObjectsFromArray:searchWordsAdditionalClean];
+    
+    NSMutableArray *prunedArray = [[NSMutableArray alloc] init];
+    
+    for (NSString *string in searchTermsComplete) {
+        
+        NSString *stringToCopy = [[NSString alloc] init];
+        
+        if ([[string lowercaseString] isEqualToString:@"a"] ||
+            [[string lowercaseString] isEqualToString:@"an"] ||
+            [[string lowercaseString] isEqualToString:@"the"] ||
+            [[string lowercaseString] isEqualToString:@"and"] ||
+            [[string lowercaseString] isEqualToString:@"in"] ||
+            [[string lowercaseString] isEqualToString:@"be"] ||
+            [[string lowercaseString] isEqualToString:@"of"]) {
+            
+            stringToCopy = @"new+york";
+            
+        } else {
+            stringToCopy = string;
+        }
+        [prunedArray addObject:stringToCopy];
+
+    }
+    
+    NSInteger randomSearchIndex = arc4random_uniform((uint32_t)prunedArray.count);
+    return prunedArray[randomSearchIndex];
 }
 
 - (void)fetchSticker {
-    NSArray *searchWords = [self.venueName componentsSeparatedByString:@" "];
-    NSArray *searchWords2 = [self.tipText componentsSeparatedByString:@" "];
     
-    NSArray *fullSearchArray = [searchWords arrayByAddingObjectsFromArray:searchWords2];
-    NSLog(@"%@", fullSearchArray);
+    NSString *searchTerm = [self chooseSearchTerm];
     
     NSString *urlPrefixString = @"http://api.giphy.com/v1/stickers/search?q=";
-    
-    for (NSString *searchTerm in fullSearchArray) {
         
-        if ([self.stickers count] > 0) {
-            break;
-        }
-        
-        NSString *lowerSearch = [searchTerm lowercaseString];
-        if ([lowerSearch isEqualToString:@"the"] ||
-            [lowerSearch isEqualToString:@"an"] ||
-            [lowerSearch isEqualToString:@"a"]) {
-            continue;
-        }
-        
-        NSString *urlString = [NSString stringWithFormat:@"%@%@%@", urlPrefixString, lowerSearch, GIPHY_STICKER_KEY];
-        //NSLog(@"url: %@", urlString);
-        NSURL *searchURL = [NSURL URLWithString:urlString];
-        
-        [APIManager GETRequestWithURL:searchURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (data != nil) {
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                //NSLog(@"json: %@", json);
-                
-                if ([json[@"data"] count] > 0) {
-                    for (NSDictionary *dict in json[@"data"]) {
-                        NSString *stickerUrlString = dict[@"images"][@"fixed_height"][@"url"];
-                        //NSLog(@"stickerUrlString: %@", stickerUrlString);
-                        NSURL *stickerUrl = [NSURL URLWithString:stickerUrlString];
-                        [self.stickers addObject:stickerUrl];
-                        NSLog(@"self.stickers: %@", self.stickers);
-                    }
-                    
-                    NSInteger randomIndex = arc4random_uniform((uint32_t)self.stickers.count);
-                    NSLog(@"random index: %ld", randomIndex);
-                    NSData *stickerData = [NSData dataWithContentsOfURL:self.stickers[randomIndex]];
-                    FLAnimatedImage *image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:stickerData];
-                    [self.stickerView setAnimatedImage:image];
-                    [self.stickerView setNeedsDisplay];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", urlPrefixString, searchTerm, GIPHY_STICKER_KEY];
+    NSLog(@"url: %@", urlString);
+    NSURL *searchURL = [NSURL URLWithString:urlString];
 
-                }
-                
+    [APIManager GETRequestWithURL:searchURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"json: %@", json);
+        
+        if ([json[@"data"] count] > 0) {
+            for (NSDictionary *dict in json[@"data"]) {
+                NSString *stickerUrlString = dict[@"images"][@"fixed_height"][@"url"];
+                NSLog(@"stickerUrlString: %@", stickerUrlString);
+                NSURL *stickerUrl = [NSURL URLWithString:stickerUrlString];
+                [self.stickers addObject:stickerUrl];
+                NSLog(@"self.stickers: %@", self.stickers);
             }
+            
+            NSInteger randomIndex = arc4random_uniform((uint32_t)self.stickers.count);
+            NSLog(@"random index: %ld", randomIndex);
+            NSData *stickerData = [NSData dataWithContentsOfURL:self.stickers[randomIndex]];
+            FLAnimatedImage *image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:stickerData];
+            [self.stickerView setAnimatedImage:image];
+            [self.stickerView setNeedsDisplay];
+            return;
+        } else {
+            NSLog(@"No search results found");
+        }
+        
+    }];
 
-        }];
-    }
 }
 
 @end

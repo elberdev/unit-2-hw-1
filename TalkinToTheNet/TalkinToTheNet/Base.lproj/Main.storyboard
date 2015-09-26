@@ -179,8 +179,8 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lAn-9O-ABc" customClass="FLAnimatedImageView">
-                                        <rect key="frame" x="32" y="280" width="440" height="144"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lAn-9O-ABc" customClass="FLAnimatedImageView">
+                                        <rect key="frame" x="32" y="280" width="440" height="136"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -196,7 +196,7 @@
                                     <constraint firstItem="lAn-9O-ABc" firstAttribute="top" secondItem="3S7-Ih-afM" secondAttribute="bottom" constant="16" id="J8m-ZN-czz"/>
                                     <constraint firstItem="7zo-n9-kep" firstAttribute="leading" secondItem="uCG-lR-4aT" secondAttribute="leading" constant="48" id="RLy-X9-0Xc"/>
                                     <constraint firstItem="7zo-n9-kep" firstAttribute="top" secondItem="oBp-xp-6q4" secondAttribute="bottom" constant="8" id="WE5-ww-yhg"/>
-                                    <constraint firstAttribute="bottom" secondItem="lAn-9O-ABc" secondAttribute="bottom" constant="16" id="XrM-sY-55X"/>
+                                    <constraint firstAttribute="bottom" secondItem="lAn-9O-ABc" secondAttribute="bottom" constant="24" id="XrM-sY-55X"/>
                                     <constraint firstItem="lAn-9O-ABc" firstAttribute="leading" secondItem="uCG-lR-4aT" secondAttribute="leading" constant="32" id="aGI-eN-21o"/>
                                     <constraint firstItem="3S7-Ih-afM" firstAttribute="top" secondItem="uaV-jW-Mdv" secondAttribute="bottom" constant="32" id="c8m-0A-5aK"/>
                                     <constraint firstItem="3S7-Ih-afM" firstAttribute="leading" secondItem="uCG-lR-4aT" secondAttribute="leading" constant="48" id="f4d-cb-R1A"/>
