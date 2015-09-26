@@ -76,7 +76,9 @@
             [[string lowercaseString] isEqualToString:@"and"] ||
             [[string lowercaseString] isEqualToString:@"in"] ||
             [[string lowercaseString] isEqualToString:@"be"] ||
-            [[string lowercaseString] isEqualToString:@"of"]) {
+            [[string lowercaseString] isEqualToString:@"of"] ||
+            [[string lowercaseString] isEqualToString:@"for"] ||
+            [[string lowercaseString] isEqualToString:@"to"]) {
             
             stringToCopy = @"new+york";
             
